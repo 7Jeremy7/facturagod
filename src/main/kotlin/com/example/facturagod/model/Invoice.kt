@@ -1,7 +1,7 @@
 package com.example.facturagod.model
 
 import jakarta.persistence.*
-import java.util.Date
+import java.util.*
 
 @Entity
 @Table(name = "invoice")

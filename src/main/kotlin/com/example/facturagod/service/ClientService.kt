@@ -11,14 +11,14 @@ import org.springframework.web.server.ResponseStatusException
 @Service
 class ClientService {
     @Autowired
-    lateinit var clientepository: ClientRepository
+    lateinit var clientRepository: ClientRepository
 
     fun list ():List<Client>{
-        return clientepository.findAll()
+        return clientRepository.findAll()
     }
     fun save(model: Client): Client {
         try{
-            return clientepository.save(model)
+            return clientRepository.save(model)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
@@ -26,10 +26,10 @@ class ClientService {
     }
     fun update(modelo: Client): Client{
         try {
-            clientepository.findById(modelo.id)
+            clientRepository.findById(modelo.id)
                     ?: throw Exception("ID no existe")
 
-            return clientepository.save(modelo)
+            return clientRepository.save(modelo)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
@@ -37,25 +37,25 @@ class ClientService {
     }
     fun updateName(modelo:Client): Client{
         try{
-            val response = clientepository.findById(modelo.id)
+            val response = clientRepository.findById(modelo.id)
                     ?: throw Exception("ID no existe")
             response.apply {
                 fullname=modelo.fullname //un atributo del modelo
             }
-            return clientepository.save(response)
+            return clientRepository.save(response)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
     fun listById (id:Long?):Client?{
-        return clientepository.findById(id)
+        return clientRepository.findById(id)
     }
     fun delete (id: Long?):Boolean?{
         try{
-            val response = clientepository.findById(id)
+            val response = clientRepository.findById(id)
                     ?: throw Exception("ID no existe")
-            clientepository.deleteById(id!!)
+            clientRepository.deleteById(id!!)
             return true
         }
         catch (ex:Exception){

@@ -1,7 +1,7 @@
 package com.example.facturagod.service
 
-import com.example.facturagod.model.Invoice
-import com.example.facturagod.repository.InvoiceRepository
+import com.example.facturagod.model.Product
+import com.example.facturagod.repository.ProductRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -9,52 +9,53 @@ import org.springframework.web.server.ResponseStatusException
 
 
 @Service
-class InvoiceService {
+class ProductService {
     @Autowired
-    lateinit var invoiceRpository: InvoiceRepository
+    lateinit var productRepository: ProductRepository
 
-    fun list ():List<Invoice>{
-        return invoiceRpository.findAll()
+    fun list ():List<Product>{
+        return productRepository.findAll()
     }
-    fun save(model: Invoice): Invoice {
+    fun save(model: Product): Product {
         try{
-            return invoiceRpository.save(model)
+            return productRepository.save(model)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
-    fun update(modelo: Invoice): Invoice{
+    fun update(modelo: Product): Product{
         try {
-            invoiceRpository.findById(modelo.id)
+            productRepository.findById(modelo.id)
                     ?: throw Exception("ID no existe")
-            return invoiceRpository.save(modelo)
+
+            return productRepository.save(modelo)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
-    fun updateName(modelo:Invoice): Invoice{
+    fun updateName(modelo:Product): Product{
         try{
-            val response = invoiceRpository.findById(modelo.id)
+            val response = productRepository.findById(modelo.id)
                     ?: throw Exception("ID no existe")
             response.apply {
-                code=modelo.code //un atributo del modelo
+                description=modelo.description //un atributo del modelo
             }
-            return invoiceRpository.save(response)
+            return productRepository.save(response)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
-    fun listById (id:Long?):Invoice?{
-        return invoiceRpository.findById(id)
+    fun listById (id:Long?):Product?{
+        return productRepository.findById(id)
     }
     fun delete (id: Long?):Boolean?{
         try{
-            val response = invoiceRpository.findById(id)
+            val response = productRepository.findById(id)
                     ?: throw Exception("ID no existe")
-            invoiceRpository.deleteById(id!!)
+            productRepository.deleteById(id!!)
             return true
         }
         catch (ex:Exception){
