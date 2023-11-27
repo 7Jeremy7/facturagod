@@ -1,6 +1,5 @@
 package com.example.facturagod.controller
 
-import com.example.facturagod.model.Client
 import com.example.facturagod.model.Invoice
 import com.example.facturagod.service.InvoiceService
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/client")
-@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 class InvoiceController {
     @Autowired
     lateinit var invoiceService: InvoiceService
