@@ -16,9 +16,9 @@ class ProductService {
     fun list ():List<Product>{
         return productRepository.findAll()
     }
-    fun save(model: Product): Product {
+    fun save(modelo: Product): Product{
         try{
-            return productRepository.save(model)
+            return productRepository.save(modelo)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
@@ -27,7 +27,7 @@ class ProductService {
     fun update(modelo: Product): Product{
         try {
             productRepository.findById(modelo.id)
-                    ?: throw Exception("ID no existe")
+                ?: throw Exception("ID no existe")
 
             return productRepository.save(modelo)
         }
@@ -35,10 +35,10 @@ class ProductService {
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
-    fun updateName(modelo:Product): Product{
+    fun updateName(modelo: Product): Product {
         try{
             val response = productRepository.findById(modelo.id)
-                    ?: throw Exception("ID no existe")
+                ?: throw Exception("ID no existe")
             response.apply {
                 description=modelo.description //un atributo del modelo
             }
@@ -48,13 +48,13 @@ class ProductService {
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
-    fun listById (id:Long?):Product?{
+    fun listById (id:Long?): Product?{
         return productRepository.findById(id)
     }
     fun delete (id: Long?):Boolean?{
         try{
             val response = productRepository.findById(id)
-                    ?: throw Exception("ID no existe")
+                ?: throw Exception("ID no existe")
             productRepository.deleteById(id!!)
             return true
         }

@@ -8,6 +8,7 @@ class Detail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(updatable = false)
+    var id: Long? = null
     var quantity: String? = null
     var price: Double? = null
     @Column (name="invoice_id")
