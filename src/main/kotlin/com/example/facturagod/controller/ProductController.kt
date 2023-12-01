@@ -8,13 +8,17 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/product")
 class ProductController {
     @Autowired
     lateinit var productService: ProductService
     @GetMapping
     fun list ():List <Product>{
         return productService.list()
+    }
+    @GetMapping("/filter-total/{value}")
+    fun listTotals (@PathVariable("value") value: Int ):ResponseEntity<*>{
+        return ResponseEntity(productService.filterTotal(value), HttpStatus.OK)
     }
     @PostMapping
     fun save (@RequestBody modelo: Product): ResponseEntity<Product> {

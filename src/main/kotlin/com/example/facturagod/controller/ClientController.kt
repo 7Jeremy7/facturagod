@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/client")
-@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 class ClientController {
     @Autowired
     lateinit var clientService: ClientService
-
     @GetMapping
     fun list ():List <Client>{
         return clientService.list()

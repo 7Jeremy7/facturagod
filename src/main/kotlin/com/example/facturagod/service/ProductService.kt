@@ -1,5 +1,6 @@
 package com.example.facturagod.service
 
+import com.example.facturagod.model.Invoice
 import com.example.facturagod.model.Product
 import com.example.facturagod.repository.ProductRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,6 +16,9 @@ class ProductService {
 
     fun list ():List<Product>{
         return productRepository.findAll()
+    }
+    fun filterTotal(value:Int?): List<Product>? {
+        return productRepository.filterTotal(value)
     }
     fun save(modelo: Product): Product{
         try{

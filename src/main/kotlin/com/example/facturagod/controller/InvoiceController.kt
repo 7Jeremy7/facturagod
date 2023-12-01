@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/invoice")
 class InvoiceController {
     @Autowired
     lateinit var invoiceService: InvoiceService
@@ -16,6 +16,10 @@ class InvoiceController {
     @GetMapping
     fun list ():List <Invoice>{
         return invoiceService.list()
+    }
+    @GetMapping("/filter-total/{value}")
+    fun listTotals (@PathVariable("value") value: Double ):ResponseEntity<*>{
+        return ResponseEntity(invoiceService.filterTotal(value), HttpStatus.OK)
     }
     @PostMapping
     fun save (@RequestBody modelo: Invoice): ResponseEntity<Invoice> {
