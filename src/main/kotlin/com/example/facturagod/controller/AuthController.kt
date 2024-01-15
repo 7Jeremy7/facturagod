@@ -1,3 +1,6 @@
+package com.example.facturagod.controller
+
+import com.example.facturagod.config.JwtUtil
 import dto.LoginDto
 import dto.TokenDto
 import org.springframework.beans.factory.annotation.Autowired
@@ -8,9 +11,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 
+@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 class AuthController {
     @Autowired
     private val authenticationManager: AuthenticationManager? = null

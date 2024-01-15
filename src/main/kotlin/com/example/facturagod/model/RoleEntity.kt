@@ -1,4 +1,3 @@
-
 package com.example.facturagod.model
 
 import jakarta.persistence.*

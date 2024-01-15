@@ -1,12 +1,12 @@
+package com.example.facturagod.service
+
 import com.example.facturagod.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.User
-
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
-
 
 @Service
 class UserSecurityService: UserDetailsService {
@@ -32,5 +32,4 @@ class UserSecurityService: UserDetailsService {
             .disabled(userEntity.disabled!!)
             .build()
     }
-
 }

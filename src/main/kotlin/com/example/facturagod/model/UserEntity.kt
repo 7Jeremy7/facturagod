@@ -2,7 +2,6 @@ package com.example.facturagod.model
 
 import jakarta.persistence.*
 
-
 @Entity
 @Table(name = "users")
 class UserEntity {
@@ -24,6 +23,4 @@ class UserEntity {
     var disabled: Boolean? = null
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     var roles: List<RoleEntity>? = null
-
-
 }
