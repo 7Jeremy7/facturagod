@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS invoice(
 
 CREATE TABLE IF NOT EXISTS detail(
     id SERIAL PRIMARY KEY,
-    quantity VARCHAR (50),
+    quantity INT,
     price   DECIMAL (10, 2),
     invoice_id INT,
     product_id INT,

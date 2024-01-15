@@ -1,8 +1,9 @@
 package com.example.facturagod.service
 
-import com.example.facturagod.model.Invoice
 import com.example.facturagod.model.Product
 import com.example.facturagod.repository.ProductRepository
+import dto.ProductDto
+import mapper.ProductMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -16,6 +17,16 @@ class ProductService {
 
     fun list ():List<Product>{
         return productRepository.findAll()
+    }
+    fun listDto ():List<ProductDto>{
+        val productList = productRepository.findAll()
+        val mutableList = mutableListOf<ProductDto>()
+        productList.map{
+            product ->
+            val productDto = ProductMapper.mapToDto(product)
+            mutableList.add(productDto)
+        }
+        return mutableList
     }
     fun filterTotal(value:Int?): List<Product>? {
         return productRepository.filterTotal(value)

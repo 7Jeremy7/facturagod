@@ -2,6 +2,7 @@ package com.example.facturagod.controller
 
 import com.example.facturagod.model.Product
 import com.example.facturagod.service.ProductService
+import dto.ProductDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -9,12 +10,17 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 class ProductController {
     @Autowired
     lateinit var productService: ProductService
     @GetMapping
     fun list ():List <Product>{
         return productService.list()
+    }
+    @GetMapping("/listDto")
+    fun listDto ():List<ProductDto>{
+        return productService.listDto()
     }
     @GetMapping("/filter-total/{value}")
     fun listTotals (@PathVariable("value") value: Int ):ResponseEntity<*>{

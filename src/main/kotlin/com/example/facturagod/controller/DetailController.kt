@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/detail")
+@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 class DetailController {
     @Autowired
     lateinit var detailService: DetailService
@@ -17,6 +18,7 @@ class DetailController {
     fun list ():List <Detail>{
         return detailService.list()
     }
+
     @PostMapping
     fun save (@RequestBody modelo: Detail): ResponseEntity<Detail> {
         return ResponseEntity(detailService.save(modelo), HttpStatus.OK)

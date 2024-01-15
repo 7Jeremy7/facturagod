@@ -13,9 +13,10 @@ import org.springframework.stereotype.Repository
 @Repository
 interface InvoiceRepository : JpaRepository<Invoice, Long?> {
 
-    fun findById (id: Long?): Invoice?
+    fun findById (id: Long?): Invoice
 
     @Query(nativeQuery = true)
     fun filterTotal(@Param("value") value: Double?):List<Invoice>?
+
 
 }

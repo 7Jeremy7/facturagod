@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ProductRepository : JpaRepository<Product, Long?> {
 
-    fun findById (id: Long?): Product?
+    fun findById (id: Long?): Product
 
     @Query(nativeQuery = true)
-    fun filterTotal(@Param("value") value: Int?):List<Product>?
+    fun filterTotal(@Param("value") value: Int?):List<Product>
 
 
 }
